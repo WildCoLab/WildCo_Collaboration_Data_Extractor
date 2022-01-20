@@ -37,3 +37,9 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Ignore RICH10
+Example raw data/Images/RICH10/
+
+# Any JPGs
+.jpg
