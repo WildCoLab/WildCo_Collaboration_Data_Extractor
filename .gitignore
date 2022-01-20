@@ -38,8 +38,9 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-# Ignore RICH10
+# Ignore RICH10 and the exmaple data
 Example raw data/Images/RICH10/
+Wolves Test Export/
 
 # Any JPGs
 .jpg

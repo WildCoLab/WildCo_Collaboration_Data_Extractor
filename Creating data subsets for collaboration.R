@@ -1,7 +1,7 @@
 # Creating a subset of the data to share will collaborators
 
 library(stringr)
-library(googledrive)
+library(googledrive) # googledrive app will need to be configured!!!
 library(purrr)
 # Note # Here we just have one stations photos to save time and space #
 
