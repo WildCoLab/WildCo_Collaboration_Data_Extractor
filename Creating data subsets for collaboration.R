@@ -66,17 +66,25 @@ for(i in 1:length(dirs))
 {
   # Make a list of all the files in the folder
   # With the full path
-  tmp <- list.files(path=dirs[i], recursive=T)
+   tmp <- list.files(path=dirs[i], recursive=T)
+   
+  #If you have extra file structures (e.g. photos are categorized based on camera check dates), subset the string so that the extra characters due to extra file structure are removed. 
+  #the line below omits everything before (and including) the last dash. what you are left is your "image namae.jpg"
+  tmp2<-gsub('^(?:[^/]*/)*\\s*(.*)', '\\1', tmp)
+  
+  #or if you have a file structure with constant number of characters you can just subset based on the number of characters you want to omit.
+  #the line below omits characters 1-11, sand starts the string from charcter 12 (That is because in our file structure photos were filed under cam visit dates with the format YYYY_MM_DD; That is 10 charcters + 1 charcter for the '/' following that)
+  #tmp2<-substring(tmp, 12)
   
   # Some of our legacy files have raw files with brackets in, whereas in the data they have been removed.
   # The way to do this is to remove any brackets from both the data (just in case) and the raw file names
   
   # The following removes brackets from the strings
-  tmp2 <- str_remove_all(tmp, "[()]")
+  tmp3 <- str_remove_all(tmp2, "[()]")
   images.needed2 <- str_remove_all(images.needed, "[()]")
   
   # Subset the files to just those which you are interested in.
-  tmp <- tmp[tmp2 %in% images.needed2]
+  tmp <- tmp[tmp3 %in% images.needed2]
   # Make a copy of the required files in the collaboration  folder
   file.copy(paste0(dirs[i],"/",tmp),  paste0(project.name, "/Images/" ))
   # Counter
